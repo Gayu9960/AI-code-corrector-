@@ -14,9 +14,7 @@ Node.js
 
 Express.js
 
-MongoDB / any database (for storing user data)
-
-Google Gemini API / OpenAI API (for AI code analysis)
+Google Gemini API 
 
 HTML, CSS, JavaScript
 
