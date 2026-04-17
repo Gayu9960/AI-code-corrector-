@@ -1,16 +1,28 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
-const aiRoutes = require("./src/routes/ai.routes"); // ✅ Correct path
+const aiRoutes = require("./src/routes/ai.routes");
 
 const app = express();
-const PORT = 3002;
-app.use(cors()); // ✅ Allow all origins for now
-// ✅ Middleware to parse JSON
+
+// Middleware
+app.use(cors({
+  origin: "*"   // later you can replace with Vercel URL
+}));
+
 app.use(express.json());
 
-app.use('/ai', aiRoutes); // ✅ Use the router
+// Routes
+app.use("/ai", aiRoutes);
+
+// Test route
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
+// IMPORTANT FIX FOR RENDER
+const PORT = process.env.PORT || 3002;
 
 app.listen(PORT, () => {
-  console.log("server started");
+  console.log(`Server started on port ${PORT}`);
 });
